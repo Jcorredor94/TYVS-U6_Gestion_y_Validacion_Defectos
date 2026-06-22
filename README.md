@@ -5,9 +5,9 @@ Repositorio de entrega de la **Unidad 6 — Gestión de defectos y validación f
 
 **Equipo Unidad 05:
 
-Yerlinson Maturana Serna
-Brayan Estif Calderon Gomez
-Sadane Geronimo Miguel Santiago Acevedo Virgues
+Yerlinson Maturana Serna,
+Brayan Estif Calderon Gomez,
+Sadane Geronimo Miguel Santiago Acevedo Virgues,
 Julian Camilo Corredor Rojas
 
 **Asignatura:** Testing y Validación de Software — Universidad de La Sabana
