@@ -3,7 +3,13 @@
 
 Repositorio de entrega de la **Unidad 6 — Gestión de defectos y validación final**.
 
-**Estudiante:** Julian Camilo Corredor Rojas
+**Equipo Unidad 05:
+
+Yerlinson Maturana Serna
+Brayan Estif Calderon Gomez
+Sadane Geronimo Miguel Santiago Acevedo Virgues
+Julian Camilo Corredor Rojas
+
 **Asignatura:** Testing y Validación de Software — Universidad de La Sabana
 **Sistema bajo prueba:** servicio `POST /register` (registraduría) — proyecto TYVS de pruebas de carga y rendimiento (Apache JMeter)
 
