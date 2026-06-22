@@ -1,0 +1,30 @@
+{
+  "name": "parkcontrol",
+  "version": "1.0.0",
+  "description": "ParkControl: sistema de gestion de parqueaderos publicos en Colombia con pruebas unitarias y cobertura.",
+  "main": "src/server/start.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server/start.js",
+    "dev": "node --watch src/server/start.js",
+    "test": "node --test test/**/*.test.js",
+    "coverage": "node --test --experimental-test-coverage --test-coverage-include=src/**/*.js --test-coverage-lines=100 --test-coverage-branches=100 --test-coverage-functions=100 test/**/*.test.js",
+    "perf": "node scripts/run-performance-test.js",
+    "e2e": "playwright test",
+    "e2e:headed": "PLAYWRIGHT_HEADLESS=false playwright test --workers=1",
+    "e2e:demo": "PLAYWRIGHT_HEADLESS=false PLAYWRIGHT_SLOW_MO=1200 playwright test --workers=1",
+    "integration": "node --test test/**/*.integration.test.js"
+  },
+  "keywords": [
+    "nodejs",
+    "parqueadero",
+    "colombia",
+    "pruebas-unitarias",
+    "cobertura"
+  ],
+  "author": "Yerlinson Maturana - Universidad de La Sabana",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.61.0"
+  }
+}

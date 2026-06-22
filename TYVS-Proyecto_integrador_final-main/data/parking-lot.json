@@ -1,0 +1,79 @@
+{
+  "capacity": {
+    "car": 30,
+    "motorcycle": 20,
+    "bicycle": 10
+  },
+  "tariffs": {
+    "car": {
+      "minimumMinutes": 30,
+      "minimumAmount": 2500,
+      "minuteRate": 95,
+      "dailyCap": 28000
+    },
+    "motorcycle": {
+      "minimumMinutes": 30,
+      "minimumAmount": 1200,
+      "minuteRate": 45,
+      "dailyCap": 12000
+    },
+    "bicycle": {
+      "minimumMinutes": 30,
+      "minimumAmount": 800,
+      "minuteRate": 20,
+      "dailyCap": 6000
+    }
+  },
+  "tickets": [
+    {
+      "id": "58394a9e-f325-4c9e-a3f4-6f7c0795e413",
+      "plate": "SAI32E",
+      "vehicleType": "car",
+      "ownerName": "Yerlin",
+      "entryTime": "2026-06-08T17:57:55.324Z",
+      "status": "closed",
+      "exitTime": "2026-06-08T17:58:07.225Z",
+      "invoice": {
+        "number": "FE-2026-1",
+        "currency": "COP",
+        "vehicleType": "car",
+        "vehicleLabel": "Automovil",
+        "chargedMinutes": 1,
+        "billableMinutes": 30,
+        "subtotal": 2850,
+        "taxRate": 0.19,
+        "tax": 542,
+        "total": 3392
+      }
+    },
+    {
+      "id": "eb382701-3486-4db1-b3b0-38f7e14c33a2",
+      "plate": "ISS288",
+      "vehicleType": "motorcycle",
+      "ownerName": "Ana Perez",
+      "entryTime": "2026-06-08T19:19:09.253Z",
+      "status": "closed",
+      "exitTime": "2026-06-08T19:57:29.597Z",
+      "invoice": {
+        "number": "FE-2026-2",
+        "currency": "COP",
+        "vehicleType": "motorcycle",
+        "vehicleLabel": "Motocicleta",
+        "chargedMinutes": 39,
+        "billableMinutes": 39,
+        "subtotal": 1755,
+        "taxRate": 0.19,
+        "tax": 333,
+        "total": 2088
+      }
+    },
+    {
+      "id": "65f1a9eb-1685-4e07-a0a0-e1d12d75296c",
+      "plate": "ISE288",
+      "vehicleType": "car",
+      "ownerName": "",
+      "entryTime": "2026-06-08T19:57:22.943Z",
+      "status": "open"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+    ok 1 - Given estado persistido When registra y liquida Then conserva historial e invoice al recargar
+    ok 2 - Given capacidad limitada When se recarga desde storage Then evita sobrecupo y duplicados
+    ok 3 - Given multiples cierres When persiste movimientos Then incrementa consecutivo de factura
+ok 1 - Integracion - dominio, tarifas y persistencia
+# tests 3
+# suites 1
+# pass 3
+# fail 0

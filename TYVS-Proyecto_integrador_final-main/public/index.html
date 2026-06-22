@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ParkControl</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Gestion operativa</p>
+          <h1>ParkControl</h1>
+          <p class="hero-credit"><strong>Grupo 09</strong> · Universidad de La Sabana</p>
+        </div>
+        <div class="hero-panel" aria-live="polite">
+          <span class="label">Vehiculos activos</span>
+          <strong id="active-count">0</strong>
+        </div>
+      </section>
+
+      <section class="operations" aria-label="Operacion del parqueadero">
+        <form id="entry-form" class="panel entry-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow-panel">Ingreso</p>
+              <h2>Registrar vehiculo</h2>
+            </div>
+            <span class="panel-badge">Manual</span>
+          </div>
+          <div class="entry-layout">
+            <div class="entry-column">
+              <label>
+                Placa
+                <input name="plate" placeholder="ABC123" required maxlength="10">
+              </label>
+            </div>
+            <div class="entry-column entry-details">
+              <fieldset class="vehicle-picker">
+                <legend>Tipo de vehiculo</legend>
+                <label class="vehicle-option">
+                  <input type="radio" name="vehicleType" value="car" checked>
+                  <span class="vehicle-card">
+                    <svg viewBox="0 0 64 64" aria-hidden="true">
+                      <path d="M15 31l5-12h24l5 12" />
+                      <path d="M11 31h42v15H11z" />
+                      <path d="M18 46v4M46 46v4" />
+                      <circle cx="21" cy="46" r="5" />
+                      <circle cx="43" cy="46" r="5" />
+                      <path d="M22 23h20M14 36h6M44 36h6" />
+                    </svg>
+                    <span>Automovil</span>
+                  </span>
+                </label>
+                <label class="vehicle-option">
+                  <input type="radio" name="vehicleType" value="motorcycle">
+                  <span class="vehicle-card">
+                    <svg viewBox="0 0 64 64" aria-hidden="true">
+                      <circle cx="18" cy="45" r="8" />
+                      <circle cx="48" cy="45" r="8" />
+                      <path d="M18 45h10l8-14h7l5 14" />
+                      <path d="M32 31l-6-8h9" />
+                      <path d="M42 25h8l3 6" />
+                      <path d="M28 45h12" />
+                    </svg>
+                    <span>Moto</span>
+                  </span>
+                </label>
+                <label class="vehicle-option">
+                  <input type="radio" name="vehicleType" value="bicycle">
+                  <span class="vehicle-card">
+                    <svg viewBox="0 0 64 64" aria-hidden="true">
+                      <circle cx="18" cy="45" r="9" />
+                      <circle cx="48" cy="45" r="9" />
+                      <path d="M18 45l11-18h9l10 18" />
+                      <path d="M29 27l6 18H18" />
+                      <path d="M38 27l-4-7h8" />
+                      <path d="M25 20h7" />
+                    </svg>
+                    <span>Bicicleta</span>
+                  </span>
+                </label>
+              </fieldset>
+              <label>
+                Propietario
+                <input name="ownerName" placeholder="Nombre opcional">
+              </label>
+              <button type="submit">Registrar entrada</button>
+            </div>
+          </div>
+        </form>
+
+        <aside class="side-stack">
+          <form id="exit-form" class="panel exit-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow-panel">Salida</p>
+                <h2>Liquidar</h2>
+              </div>
+              <span class="panel-badge">POS</span>
+            </div>
+            <label>
+              Placa
+              <input name="plate" placeholder="ABC123" required maxlength="10">
+            </label>
+            <button type="submit">Liquidar y cerrar</button>
+            <div id="invoice" class="invoice" hidden></div>
+          </form>
+
+          <section class="panel occupancy-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow-panel">Disponibilidad</p>
+                <h2>Ocupacion actual</h2>
+              </div>
+            </div>
+            <div id="occupancy" class="occupancy"></div>
+          </section>
+        </aside>
+      </section>
+
+      <section class="records-grid" aria-label="Registros operativos">
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow-panel">En parqueadero</p>
+              <h2>Tiquetes abiertos</h2>
+            </div>
+          </div>
+          <div class="table-wrap compact-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Placa</th>
+                  <th>Tipo</th>
+                  <th>Propietario</th>
+                  <th>Entrada</th>
+                </tr>
+              </thead>
+              <tbody id="open-tickets"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow-panel">Movimientos</p>
+              <h2>Historial reciente</h2>
+            </div>
+          </div>
+          <div class="table-wrap compact-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Placa</th>
+                  <th>Estado</th>
+                  <th>Entrada</th>
+                  <th>Salida</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody id="history"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <div id="receipt-modal" class="modal-backdrop" hidden>
+      <section class="receipt-modal" role="dialog" aria-modal="true" aria-labelledby="receipt-modal-title">
+        <div class="modal-heading">
+          <div>
+            <p class="eyebrow-panel">Factura POS</p>
+            <h2 id="receipt-modal-title">Tirilla de salida</h2>
+          </div>
+          <button id="close-receipt-modal" type="button" class="modal-close" aria-label="Cerrar">×</button>
+        </div>
+        <div id="receipt-modal-body" class="receipt-modal-body"></div>
+        <div class="modal-actions">
+          <button id="print-receipt" type="button" class="print-receipt-button">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 8V4h10v4" />
+              <path d="M7 18H5a2 2 0 01-2-2v-5a2 2 0 012-2h14a2 2 0 012 2v5a2 2 0 01-2 2h-2" />
+              <path d="M7 14h10v6H7z" />
+            </svg>
+            Imprimir Factura
+          </button>
+        </div>
+      </section>
+    </div>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
