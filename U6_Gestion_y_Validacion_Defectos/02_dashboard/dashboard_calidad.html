@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard de calidad · Gestión de defectos U6</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#EEF2F7;color:#1A2433;line-height:1.45}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px 48px}
+header{background:linear-gradient(120deg,#16335B,#234a82);color:#fff;padding:26px 0 24px;margin-bottom:24px;box-shadow:0 2px 14px rgba(0,0,0,.12)}
+header .wrap{padding-bottom:0}
+.eyebrow{color:#9DB6DC;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700}
+h1{font-size:25px;font-weight:800;margin:4px 0 6px}
+.sub{color:#C7D6EE;font-size:13.5px}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:26px}
+.kpi{background:#fff;border-radius:12px;padding:16px 16px 14px;box-shadow:0 1px 3px rgba(20,40,80,.08);position:relative;overflow:hidden}
+.kpibar{position:absolute;left:0;top:0;bottom:0;width:5px}
+.kpiv{font-size:27px;font-weight:800;color:#16335B;line-height:1}
+.kpit{font-size:12.5px;font-weight:700;margin-top:7px;color:#33415C}
+.kpis{font-size:11px;color:#7A879B;margin-top:2px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{background:#fff;border-radius:12px;padding:20px 22px;box-shadow:0 1px 3px rgba(20,40,80,.08)}
+.card h2{font-size:14.5px;color:#16335B;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.card h2::before{content:"";width:4px;height:16px;background:#2E6DB4;border-radius:2px;display:inline-block}
+.span2{grid-column:1 / -1}
+.chart{width:100%;height:auto;display:block}
+.bar{transition:opacity .15s}.chart:hover .bar{opacity:.45}.chart .bar:hover{opacity:1}
+.distrow{display:flex;align-items:center;gap:12px;margin:9px 0}
+.distlbl{width:150px;font-size:12.5px;color:#33415C;font-weight:600;flex-shrink:0}
+.distbar{flex:1;background:#EEF2F7;border-radius:6px;height:22px;overflow:hidden}
+.distfill{height:100%;border-radius:6px;transition:width .6s ease}
+.distval{width:22px;text-align:right;font-weight:800;color:#16335B;font-size:13px}
+table.slot{width:100%;border-collapse:collapse;text-align:center}
+table.slot th{background:#16335B;color:#fff;font-size:11.5px;padding:8px 4px;font-weight:700}
+table.slot th span{font-weight:400;color:#AFC4E5;font-size:10px}
+table.slot td{padding:9px 4px;border:1px solid #E4E8EE;font-size:12.5px}
+table.slot td.sc{font-weight:700;color:#16335B;text-align:left;padding-left:10px}
+table.slot td.ok{background:#E8F6EE;color:#27AE60}
+table.slot td.ko{background:#FBEAE8;color:#C0392B}
+table.slot td b{font-size:14px;display:block}
+table.slot td small{font-size:10px;color:#7A879B}
+table.dft{width:100%;border-collapse:collapse}
+table.dft th{background:#16335B;color:#fff;font-size:11.5px;padding:9px 8px;text-align:left}
+table.dft td{padding:9px 8px;border-bottom:1px solid #EAEEF4;font-size:12.5px;vertical-align:middle}
+table.dft tr:hover td{background:#F5F8FC}
+.dft .rk{text-align:center;font-weight:800;color:#7A879B;width:30px}
+.dft .id{font-weight:800;color:#16335B;white-space:nowrap}
+.dft .ti{color:#33415C}
+.dft .sccol{text-align:center;color:#16335B;font-size:14px}
+.pill{color:#fff;font-weight:700;font-size:11px;padding:3px 9px;border-radius:11px;display:inline-block}
+.estado{font-size:11px;font-weight:700;border:1.4px solid;border-radius:11px;padding:2px 9px;display:inline-block;white-space:nowrap}
+.legend{display:flex;gap:16px;font-size:11.5px;color:#5A6675;margin-top:10px;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:5px}
+.dot{width:11px;height:11px;border-radius:3px;display:inline-block}
+.note{font-size:11.5px;color:#7A879B;margin-top:12px;line-height:1.5}
+footer{text-align:center;color:#9AA5B1;font-size:11.5px;margin-top:30px}
+@media(max-width:900px){.kpis{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:1fr}}
+@media(max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}}
+</style></head>
+<body>
+<header><div class="wrap">
+<div class="eyebrow">Universidad de La Sabana · Testing y Validación de Software · Unidad 6</div>
+<h1>Dashboard de métricas de calidad</h1>
+<div class="sub">Gestión del ciclo de vida del defecto · Servicio <b>POST /register</b> (registraduría) · Pruebas de carga con Apache JMeter</div>
+</div></header>
+<div class="wrap">
+
+<div class="kpis"><div class="kpi"><div class="kpibar" style="background:#16335B"></div><div class="kpiv">4</div><div class="kpit">Defectos gestionados</div><div class="kpis">DEF-PERF-01 a 04</div></div><div class="kpi"><div class="kpibar" style="background:#C0392B"></div><div class="kpiv">2</div><div class="kpit">Prioridad P1 (críticos)</div><div class="kpis">50% del total</div></div><div class="kpi"><div class="kpibar" style="background:#27AE60"></div><div class="kpiv">80%</div><div class="kpit">Conformidad de SLO</div><div class="kpis">12/15 chequeos</div></div><div class="kpi"><div class="kpibar" style="background:#27AE60"></div><div class="kpiv">0%</div><div class="kpit">Tasa de errores</div><div class="kpis">11.104 muestras</div></div><div class="kpi"><div class="kpibar" style="background:#2E6DB4"></div><div class="kpiv">0,8</div><div class="kpit">Densidad de defectos</div><div class="kpis">por escenario</div></div><div class="kpi"><div class="kpibar" style="background:#E67E22"></div><div class="kpiv">40–50</div><div class="kpit">Capacidad segura</div><div class="kpis">VUs (p95 &lt; 300 ms)</div></div></div>
+
+<div class="grid">
+  <div class="card">
+    <h2>Latencia p95 por escenario frente al SLO</h2>
+    <svg viewBox="0 0 520 260" class="chart"><line x1="44" y1="226" x2="506" y2="226" stroke="#E4E8EE"/><text x="38" y="229" text-anchor="end" font-size="9" fill="#9AA5B1">0</text><line x1="44" y1="174" x2="506" y2="174" stroke="#E4E8EE"/><text x="38" y="176" text-anchor="end" font-size="9" fill="#9AA5B1">250</text><line x1="44" y1="121" x2="506" y2="121" stroke="#E4E8EE"/><text x="38" y="124" text-anchor="end" font-size="9" fill="#9AA5B1">500</text><line x1="44" y1="68" x2="506" y2="68" stroke="#E4E8EE"/><text x="38" y="72" text-anchor="end" font-size="9" fill="#9AA5B1">750</text><line x1="44" y1="16" x2="506" y2="16" stroke="#E4E8EE"/><text x="38" y="19" text-anchor="end" font-size="9" fill="#9AA5B1">1000</text><line x1="44" y1="163" x2="506" y2="163" stroke="#16335B" stroke-width="1.6" stroke-dasharray="6 4"/><text x="506" y="157" text-anchor="end" font-size="10" font-weight="700" fill="#16335B">SLO-1: p95 &lt; 300 ms</text><rect class="bar" x="73" y="215" width="58" height="11" rx="3" fill="#27AE60"><title>Baseline: p95 51 ms</title></rect><text x="102" y="210" text-anchor="middle" font-size="11" font-weight="700" fill="#16335B">51</text><rect class="bar" x="159" y="175" width="58" height="51" rx="3" fill="#27AE60"><title>Load: p95 242 ms</title></rect><text x="188" y="170" text-anchor="middle" font-size="11" font-weight="700" fill="#16335B">242</text><rect class="bar" x="246" y="77" width="58" height="149" rx="3" fill="#C0392B"><title>Stress: p95 710 ms</title></rect><text x="275" y="72" text-anchor="middle" font-size="11" font-weight="700" fill="#16335B">710</text><rect class="bar" x="333" y="35" width="58" height="191" rx="3" fill="#C0392B"><title>Spike: p95 909 ms</title></rect><text x="362" y="30" text-anchor="middle" font-size="11" font-weight="700" fill="#16335B">909</text><rect class="bar" x="419" y="206" width="58" height="20" rx="3" fill="#27AE60"><title>Soak: p95 95 ms</title></rect><text x="448" y="201" text-anchor="middle" font-size="11" font-weight="700" fill="#16335B">95</text><text x="102" y="241" text-anchor="middle" font-size="11" fill="#5A6675">Baseline</text><text x="188" y="241" text-anchor="middle" font-size="11" fill="#5A6675">Load</text><text x="275" y="241" text-anchor="middle" font-size="11" fill="#5A6675">Stress</text><text x="362" y="241" text-anchor="middle" font-size="11" fill="#5A6675">Spike</text><text x="448" y="241" text-anchor="middle" font-size="11" fill="#5A6675">Soak</text></svg>
+    <div class="legend"><span><i class="dot" style="background:#27AE60"></i>Cumple SLO-1</span><span><i class="dot" style="background:#C0392B"></i>Incumple SLO-1</span></div>
+  </div>
+  <div class="card">
+    <h2>Throughput vs. concurrencia (cuello de botella)</h2>
+    <svg viewBox="0 0 520 260" class="chart"><line x1="46" y1="16" x2="46" y2="226" stroke="#E4E8EE"/><text x="46" y="241" text-anchor="middle" font-size="9" fill="#9AA5B1">0</text><line x1="194" y1="16" x2="194" y2="226" stroke="#E4E8EE"/><text x="194" y="241" text-anchor="middle" font-size="9" fill="#9AA5B1">55</text><line x1="342" y1="16" x2="342" y2="226" stroke="#E4E8EE"/><text x="342" y="241" text-anchor="middle" font-size="9" fill="#9AA5B1">110</text><line x1="491" y1="16" x2="491" y2="226" stroke="#E4E8EE"/><text x="491" y="241" text-anchor="middle" font-size="9" fill="#9AA5B1">165</text><line x1="46" y1="226" x2="504" y2="226" stroke="#E4E8EE"/><text x="40" y="229" text-anchor="end" font-size="9" fill="#9AA5B1">0</text><line x1="46" y1="174" x2="504" y2="174" stroke="#E4E8EE"/><text x="40" y="176" text-anchor="end" font-size="9" fill="#9AA5B1">55</text><line x1="46" y1="121" x2="504" y2="121" stroke="#E4E8EE"/><text x="40" y="124" text-anchor="end" font-size="9" fill="#9AA5B1">110</text><line x1="46" y1="68" x2="504" y2="68" stroke="#E4E8EE"/><text x="40" y="72" text-anchor="end" font-size="9" fill="#9AA5B1">165</text><line x1="46" y1="16" x2="504" y2="16" stroke="#E4E8EE"/><text x="40" y="19" text-anchor="end" font-size="9" fill="#9AA5B1">220</text><rect x="46" y="55" width="458" height="10" fill="#2E6DB4" opacity="0.10"/><polyline points="68,64 89,56 154,59 369,59 477,58" fill="none" stroke="#16335B" stroke-width="2.4"/><circle cx="68" cy="64" r="5" fill="#16335B"><title>Baseline: 8 VUs, 169.9 req/s</title></circle><circle cx="89" cy="56" r="5" fill="#16335B"><title>Soak: 16 VUs, 178.6 req/s</title></circle><circle cx="154" cy="59" r="5" fill="#16335B"><title>Load: 40 VUs, 175.3 req/s</title></circle><circle cx="369" cy="59" r="5" fill="#16335B"><title>Stress: 120 VUs, 174.6 req/s</title></circle><circle cx="477" cy="58" r="5" fill="#16335B"><title>Spike: 160 VUs, 175.6 req/s</title></circle><text x="275" y="256" text-anchor="middle" font-size="10" fill="#5A6675">Concurrencia (usuarios virtuales)</text><text x="14" y="121" text-anchor="middle" font-size="10" fill="#5A6675" transform="rotate(-90 14 121)">Throughput (req/s)</text><text x="275" y="83" text-anchor="middle" font-size="10" font-weight="700" fill="#2E6DB4">Techo ~170 req/s</text></svg>
+    <p class="note">El throughput se mantiene plano (~170 req/s) aunque la concurrencia crezca ×20: firma de un recurso de escritura serializado (DEF-PERF-01).</p>
+  </div>
+
+  <div class="card">
+    <h2>Distribución por severidad</h2>
+    <div class="distrow"><span class="distlbl">Alta</span><div class="distbar"><div class="distfill" style="width:50%;background:#C0392B"></div></div><span class="distval">2</span></div><div class="distrow"><span class="distlbl">Media</span><div class="distbar"><div class="distfill" style="width:50%;background:#E67E22"></div></div><span class="distval">2</span></div>
+    <h2 style="margin-top:18px">Distribución por prioridad</h2>
+    <div class="distrow"><span class="distlbl">P1</span><div class="distbar"><div class="distfill" style="width:50%;background:#16335B"></div></div><span class="distval">2</span></div><div class="distrow"><span class="distlbl">P2</span><div class="distbar"><div class="distfill" style="width:50%;background:#2E6DB4"></div></div><span class="distval">2</span></div>
+  </div>
+  <div class="card">
+    <h2>Estado en el ciclo de vida</h2>
+    <div class="distrow"><span class="distlbl">Cerrado - Diferido</span><div class="distbar"><div class="distfill" style="width:50%;background:#27AE60"></div></div><span class="distval">2</span></div><div class="distrow"><span class="distlbl">En progreso</span><div class="distbar"><div class="distfill" style="width:25%;background:#2E6DB4"></div></div><span class="distval">1</span></div><div class="distrow"><span class="distlbl">Abierto</span><div class="distbar"><div class="distfill" style="width:25%;background:#E67E22"></div></div><span class="distval">1</span></div>
+    <h2 style="margin-top:18px">Distribución por tipo</h2>
+    <div class="distrow"><span class="distlbl">Rendimiento</span><div class="distbar"><div class="distfill" style="width:75%;background:#16335B"></div></div><span class="distval">3</span></div><div class="distrow"><span class="distlbl">Funcional / Concurrencia</span><div class="distbar"><div class="distfill" style="width:25%;background:#2E6DB4"></div></div><span class="distval">1</span></div>
+  </div>
+
+  <div class="card">
+    <h2>Cumplimiento de SLO por escenario</h2>
+    <table class="slot"><tr><th>Escenario</th><th>VUs</th><th>SLO-1<br><span>p95&lt;300</span></th><th>SLO-2<br><span>p99&lt;800</span></th><th>SLO-3<br><span>err&lt;1%</span></th></tr><tr><td class="sc">Baseline</td><td>8</td><td class="ok"><b>✓</b><small>51</small></td><td class="ok"><b>✓</b><small>57</small></td><td class="ok"><b>✓</b><small>0.0%</small></td></tr><tr><td class="sc">Load</td><td>40</td><td class="ok"><b>✓</b><small>242</small></td><td class="ok"><b>✓</b><small>262</small></td><td class="ok"><b>✓</b><small>0.0%</small></td></tr><tr><td class="sc">Stress</td><td>120</td><td class="ko"><b>✕</b><small>710</small></td><td class="ok"><b>✓</b><small>765</small></td><td class="ok"><b>✓</b><small>0.0%</small></td></tr><tr><td class="sc">Spike</td><td>160</td><td class="ko"><b>✕</b><small>909</small></td><td class="ko"><b>✕</b><small>935</small></td><td class="ok"><b>✓</b><small>0.0%</small></td></tr><tr><td class="sc">Soak</td><td>16</td><td class="ok"><b>✓</b><small>95</small></td><td class="ok"><b>✓</b><small>125</small></td><td class="ok"><b>✓</b><small>0.0%</small></td></tr></table>
+    <p class="note">12 de 15 chequeos conformes (80%). El SLO-1 se incumple en Stress y Spike; el SLO-2, solo en Spike. La tasa de errores cumple en todos los escenarios.</p>
+  </div>
+  <div class="card">
+    <h2>Resumen del proceso</h2>
+    <div class="distrow"><span class="distlbl">Tasa de escape a prod.</span><div class="distbar"><div class="distfill" style="width:2%;background:#27AE60"></div></div><span class="distval">0%</span></div>
+    <div class="distrow"><span class="distlbl">Tasa de cierre</span><div class="distbar"><div class="distfill" style="width:50%;background:#2E6DB4"></div></div><span class="distval">50%</span></div>
+    <div class="distrow"><span class="distlbl">SLO-1 conforme (5 esc.)</span><div class="distbar"><div class="distfill" style="width:60%;background:#E67E22"></div></div><span class="distval">3</span></div>
+    <div class="distrow"><span class="distlbl">SLO-2 conforme</span><div class="distbar"><div class="distfill" style="width:80%;background:#2E6DB4"></div></div><span class="distval">4</span></div>
+    <div class="distrow"><span class="distlbl">SLO-3 conforme</span><div class="distbar"><div class="distfill" style="width:100%;background:#27AE60"></div></div><span class="distval">5</span></div>
+    <p class="note">Capacidad operativa segura ≈ 40–50 usuarios concurrentes. Por encima, la latencia supera el umbral de SLO-1.</p>
+  </div>
+
+  <div class="card span2">
+    <h2>Defectos priorizados (Score = Severidad × Frecuencia × Impacto)</h2>
+    <table class="dft">
+      <tr><th>#</th><th>ID</th><th>Título</th><th>Severidad</th><th>Prioridad</th><th>Score</th><th>Estado</th></tr>
+      <tr><td class="rk">1</td><td class="id">DEF-PERF-01</td><td class="ti">Throughput estancado por escritura serializada (cuello de botella raíz)</td><td><span class="pill" style="background:#C0392B">Alta</span></td><td><span class="pill" style="background:#16335B">P1</span></td><td class="sccol"><b>27</b></td><td><span class="estado" style="color:#2E6DB4;border-color:#2E6DB4">En progreso</span></td></tr><tr><td class="rk">2</td><td class="id">DEF-PERF-02</td><td class="ti">Incumplimiento del SLO de latencia (p95/p99) bajo Stress y Spike</td><td><span class="pill" style="background:#C0392B">Alta</span></td><td><span class="pill" style="background:#16335B">P1</span></td><td class="sccol"><b>27</b></td><td><span class="estado" style="color:#E67E22;border-color:#E67E22">Abierto</span></td></tr><tr><td class="rk">3</td><td class="id">DEF-PERF-03</td><td class="ti">Ausencia de backpressure / degradación no controlada en picos</td><td><span class="pill" style="background:#E67E22">Media</span></td><td><span class="pill" style="background:#2E6DB4">P2</span></td><td class="sccol"><b>8</b></td><td><span class="estado" style="color:#27AE60;border-color:#27AE60">Cerrado - Diferido</span></td></tr><tr><td class="rk">4</td><td class="id">DEF-PERF-04</td><td class="ti">Verificación de duplicado no atómica (condición de carrera latente)</td><td><span class="pill" style="background:#E67E22">Media</span></td><td><span class="pill" style="background:#2E6DB4">P2</span></td><td class="sccol"><b>6</b></td><td><span class="estado" style="color:#27AE60;border-color:#27AE60">Cerrado - Diferido</span></td></tr>
+    </table>
+  </div>
+</div>
+
+<footer>Generado para la actividad U6 · Datos reales: 11.104 muestras, 5 escenarios (Baseline · Load · Stress · Spike · Soak) · Repositorio TYVS — Pruebas de carga y rendimiento</footer>
+</div>
+</body></html>
