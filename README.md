@@ -3,7 +3,7 @@
 
 Repositorio de entrega de la **Unidad 6 — Gestión de defectos y validación final**.
 
-**Equipo Unidad 05:
+**Equipo Unidad 06:
 
 Yerlinson Maturana Serna,
 Brayan Estif Calderon Gomez,
